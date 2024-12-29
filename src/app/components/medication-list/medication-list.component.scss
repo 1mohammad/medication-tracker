@@ -1,5 +1,17 @@
+.table-container {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @media (min-width: 768px) {
+    width: 80%;
+  }
+}
+
 .medication-table {
-  position: relative;
+  margin-top: 2rem;
+  width: 100%;
   overflow-x: auto;
   box-shadow: var(--shadow-md);
   border-radius: 0.5rem;
@@ -10,15 +22,14 @@
   text-align: left;
   font-size: 0.875rem;
   color: var(--color-gray-500);
-  margin-top: 1.25rem;
-}
 
-.medication-header {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.75rem;
-  color: var(--color-gray-700);
-  text-transform: uppercase;
-  background-color: var(--color-gray-50);
+  th {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.75rem;
+    color: var(--color-gray-700);
+    text-transform: uppercase;
+    background-color: var(--color-gray-50);
+  }
 }
 
 .medication-row {
@@ -28,6 +39,10 @@
   &:hover {
     background-color: var(--color-gray-50);
   }
+
+  td {
+    padding: 1rem 1.5rem;
+  }
 }
 
 .medication-title {
@@ -35,8 +50,4 @@
   font-weight: 500;
   color: var(--color-gray-900);
   white-space: nowrap;
-}
-
-.medication-cell {
-  padding: 1rem 1.5rem;
 }
