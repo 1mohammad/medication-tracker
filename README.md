@@ -1,59 +1,122 @@
-# MedicalTracker
+# Medicator
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
-## Development server
+## 📋 Overview
 
-To start a local development server, run:
+Medicator is a modern web application designed to help users manage and track their medications efficiently. Built with Angular, this application provides a user-friendly interface for adding, storing, and monitoring medication schedules.
 
-```bash
-ng serve
+## ✨ Features
+
+- **Medication Management**: Add and track multiple medications
+- **Browser Storage**: Local storage implementation for persistent data
+- **Validation System**: Robust validation for medication inputs
+- **Responsive Design**: Clean and modern UI that works across devices
+- **Dependency Injection**: Efficient use of Angular's DI system
+
+## 🛠️ Technical Stack
+
+- **Frontend Framework**: Angular
+- **Testing**: Jasmine/Karma
+- **Storage**: Browser Local Storage
+- **Styling**: TailwindCSS
+- **Architecture**: Component-based with Service Layer
+
+## 🏗️ Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── add-medication-modal/
+│   │   │   ├── add-medication-modal.component.ts
+│   │   │   └── add-medication-modal.component.html
+│   │   └── medication-list/
+│   │       ├── medication-list.component.scss
+│   │       └── medication-list.component.html
+│   └── services/
+│       ├── medication.service.ts
+│       ├── medication.service.spec.ts
+│       ├── storage.service.ts
+│       ├── storage.service.spec.ts
+│       ├── validator.service.ts
+│       └── validator.service.spec.ts
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🚀 Getting Started
 
-## Code scaffolding
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/1mohammad/medication-tracker.git
+   ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+2. **Install dependencies**
+   ```bash
+   cd medicator
+   npm install
+   ```
 
-```bash
-ng generate component component-name
-```
+3. **Run the development server**
+   ```bash
+   ng serve
+   ```
+   Navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🧪 Testing
 
-```bash
-ng generate --help
-```
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io). The project includes comprehensive tests for:
+- Storage Service
+- Validator Service
+- Components functionality
 
-## Building
+## 💻 Development
 
-To build the project run:
+### Key Components
 
-```bash
-ng build
-```
+1. **Add Medication Modal**
+   - Handles new medication entry
+   - Implements form validation
+   - Communicates with medication service
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2. **Medication List**
+   - Displays stored medications
+   - Responsive layout
+   - Real-time search functionality
+   - Filterable by medication name
 
-## Running unit tests
+### Services
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1. **Storage Service**
+   - Manages browser local storage
+   - Handles data persistence
 
-```bash
-ng test
-```
+2. **Medication Service**
+   - Core business logic
+   - CRUD operations for medications
+   - Data validation coordination
 
-## Running end-to-end tests
+3. **Validator Service**
+   - Input validation
+   - Data integrity checks
+   - Error handling
 
-For end-to-end (e2e) testing, run:
+## 🔧 Building
 
-```bash
-ng e2e
-```
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Use `ng build --prod` for a production build
+- Outputs are optimized for performance
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🤝 Contributing
 
-## Additional Resources
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## 📚 Additional Resources
+
+- [Angular Documentation](https://angular.dev)
+- [Angular CLI Overview](https://angular.dev/tools/cli)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
