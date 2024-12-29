@@ -48,13 +48,14 @@ export class AddMedicationModalComponent {
   }
 
   constructor() {
-	effect(() => {
-		if(this.isOpen()) {
-			this.initForm();
-		}
-	});
+    this.initForm();
+    
+    effect(() => {
+      if(this.isOpen()) {
+        this.resetForm();
+      }
+    });
   }
-
 
   private initForm(): void {
     this.medicationForm = this.fb.group({
@@ -69,6 +70,10 @@ export class AddMedicationModalComponent {
         this.createTimeControl()
       ],[this.validator.notDuplicateItem])
     });
+  }
+
+  private resetForm(): void {
+    this.medicationForm.reset();
   }
 
   private createTimeControl() {
