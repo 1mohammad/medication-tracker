@@ -1,24 +1,55 @@
 <div class="table-container">
-	<app-search-medication />
+	<div class="relative flex items-center gap-2">
+		<app-search-medication (searchChange)="searchTerm.set($event)" />
+		<div class="top-0 right-0 md:absolute">
+			<app-button (click)="toggleModal(true)"> 
+				<div class="flex items-center gap-2">
+					<svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+					</svg>
+					<span class="hidden md:block">
+						Add Medication
+					</span>
+				</div>
+			</app-button>
+		</div>
+	</div>
 	<div class="medication-table">
 		<table class="medication-list">
 			<thead>
 				<tr>
-					<th scope="col">Medication</th>
-					<th scope="col">Dosage</th>
-					<th scope="col">Frequency</th>
-					<th scope="col">Last updated</th>
+					<th>Medication</th>
+					<th>Dosage</th>
+					<th>Frequency</th>
+					<th>Last updated</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="medication-row">
-					<td scope="row" class="medication-title">Aspirin</td>
-					<td>3 capsules</td>
-					<td>Wed, Sat at 00:00 </td>
-					<td>05 November 2024</td>
-				</tr>
+				@if (medications()?.length === 0 || filteredMedications()?.length === 0) {
+					<tr>
+						<td colspan="4" class="text-center py-4 text-gray-500">
+							@if (medications()?.length === 0) {
+								No medications found. Click "Add Medication" to get started.
+							} @else {
+								No medications match your search criteria.
+							}
+						</td>
+					</tr>
+				} @else {
+					@for (medication of filteredMedications(); track medication.id) {
+						<tr class="medication-row">
+							<td class="medication-title">{{ medication.name }}</td>
+							<td>{{ medication.dosage }}</td>
+							<td>{{ medication.schedule.days.join(', ')}} at {{ medication.schedule.times.join(', ') }}</td>
+							<td>{{ medication.lastUpdated }}</td>
+						</tr>
+					}
+				}
 			</tbody>
 		</table>
 	</div>
 </div>
 
+@defer (when showModal()) {
+	<app-add-medication-modal [isOpen]="showModal()" (closeModal)="toggleModal(false)" />
+}

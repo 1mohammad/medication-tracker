@@ -7,4 +7,5 @@ import { Component, input } from '@angular/core';
   styleUrl: './button.component.scss'
 })
 export class ButtonComponent {
+	type = input<string>('button');
 }

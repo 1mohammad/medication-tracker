@@ -1,1 +1,132 @@
-<p>add-medication-modal works!</p>
+<app-modal 
+	[isOpen]="isOpen()" 
+	(closeModal)="closeModal.emit()"
+	title="Add New Medication"
+>
+	
+  <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <!-- Medication Name -->
+    <div>
+      @let medicationNameControl = medicationForm.get('medicationName');
+      @let nameInvalid = medicationNameControl?.invalid && medicationNameControl?.touched;
+      <label for="medicationName" class="block text-sm font-medium mb-2">Medication Name</label>
+      <input
+        type="text"
+        id="medicationName"
+        formControlName="medicationName"
+        class="custom-input"
+        [class.invalid]="nameInvalid"
+      >
+      @if (nameInvalid) {
+        <p class="text-red-500 text-sm mt-1">
+          {{ medicationNameControl?.errors | formError:'Medication Name' }}
+        </p>
+      }
+    </div>
+
+    <!-- Dosage -->
+    <div class="flex gap-4">
+      <div class="flex-1">
+        @let dosageControl = medicationForm.get('dosage');
+        @let dosageInvalid = dosageControl?.invalid && dosageControl?.touched;
+        <label for="dosage" class="block text-sm font-medium mb-2">Dosage</label>
+        <input
+          type="number"
+          id="dosage"
+          formControlName="dosage"
+          class="custom-input"
+		  [class.invalid]="dosageInvalid"
+		  step="0.1"
+		  min="0"
+        >
+        @if (dosageInvalid) {
+          <p class="text-red-500 text-sm mt-1">Please enter a valid dosage</p>
+        }
+      </div>
+      <div class="flex-1">
+        @let dosageUnitControl = medicationForm.get('dosageUnit');
+        @let unitInvalid = dosageUnitControl?.invalid && dosageUnitControl?.touched;
+        <label for="dosageUnit" class="block text-sm font-medium mb-2">Unit</label>
+        <select
+          id="dosageUnit"
+          formControlName="dosageUnit"
+          class="custom-input"
+          [class.invalid]="unitInvalid"
+        >
+          <option value="">Select unit</option>
+          @for (unit of dosageUnits; track $index) {
+            <option [value]="unit">{{unit}}</option>
+          }
+        </select>
+        @if (unitInvalid) {
+          <p class="text-red-500 text-sm mt-1">Please select a unit</p>
+        }
+      </div>
+    </div>
+
+	<div class="frequency-container">
+	    <!-- Days of Week -->
+		<div class="mb-3">
+			<label class="block text-sm font-medium mb-2">Days of Week</label>
+			<div class="flex gap-1 w-full flex-wrap" formArrayName="selectedDays">
+			  @for (day of weekDays; track i; let i = $index) {
+				<label class="day-selector">
+				  <input
+					type="checkbox"
+					[formControlName]="i"
+					class="day-selector__input"
+				  >
+				  <span class="day-selector__label">
+					{{day}}
+				  </span>
+				</label>
+			  }
+			</div>
+			@let selectedDaysControl = medicationForm.get('selectedDays');
+			@if (selectedDaysControl?.hasError('noDaySelected') && (selectedDaysControl?.touched)) {
+				<p class="text-red-500 text-sm mt-1">Please select at least one day</p>
+			}
+		</div>
+	  
+		  <!-- Time Slots -->
+		<div class="w-fit">
+		  <label class="block text-sm font-medium mb-2">Time</label>
+		  <div class="space-y-2" formArrayName="timeSlots">
+			  @for (slot of timeSlots.controls; let i = $index; track i) {
+				  @let timeInvalid = slot.invalid && slot.touched;
+				  <div class="flex gap-2">
+					  <input
+						type="time"
+						[formControlName]="i"
+						class="custom-input"
+						[class.invalid]="timeInvalid"
+						(input)="onTimeChange(i)"
+					  >
+				  </div>
+				  @if (timeInvalid) {
+					<p class="text-red-500 text-sm mt-1">Please select a time</p>
+				  }
+			  }
+		  </div>
+		  @if (timeSlots.length < 5) {	
+			  <button
+				type="button"
+				(click)="addTimeSlot()"
+				class="mt-2 text-sm text-blue-700"
+			  >
+			  + Add another time
+			</button>
+		  }
+		</div>
+	</div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+	  <app-button 
+		type="submit"
+	  >
+		Save Medication
+	  </app-button>
+    </div>
+  </form>
+</app-modal>
