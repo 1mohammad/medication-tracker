@@ -9,7 +9,12 @@ export class ValidatorService {
 
 	atLeastOneSelected(control: AbstractControl): ValidationErrors | null {
 		const values = control.value as boolean[];
-		return values.some(value => value) ? null : { noDaySelected: true };
+		return values.some(value => value) ? null : { noItemSelected: true };
+	}
+
+	notDuplicateItem(control: AbstractControl): ValidationErrors | null {
+		const values = control.value as string[];
+		return values.length === values.filter((value, index, self) => self.indexOf(value) === index).length ? null : { duplicateItem: true };
 	}
 
 }

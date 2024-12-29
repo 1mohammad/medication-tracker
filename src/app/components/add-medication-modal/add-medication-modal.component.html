@@ -40,7 +40,9 @@
 		  min="0"
         >
         @if (dosageInvalid) {
-          <p class="text-red-500 text-sm mt-1">Please enter a valid dosage</p>
+          <p class="text-red-500 text-sm mt-1">
+			{{ dosageControl?.errors | formError:'Dosage' }}
+		  </p>
         }
       </div>
       <div class="flex-1">
@@ -59,7 +61,9 @@
           }
         </select>
         @if (unitInvalid) {
-          <p class="text-red-500 text-sm mt-1">Please select a unit</p>
+          <p class="text-red-500 text-sm mt-1">
+			{{ dosageUnitControl?.errors | formError:'Unit' }}
+		  </p>
         }
       </div>
     </div>
@@ -83,40 +87,51 @@
 			  }
 			</div>
 			@let selectedDaysControl = medicationForm.get('selectedDays');
-			@if (selectedDaysControl?.hasError('noDaySelected') && (selectedDaysControl?.touched)) {
-				<p class="text-red-500 text-sm mt-1">Please select at least one day</p>
+			@if (selectedDaysControl?.invalid && (selectedDaysControl?.touched)) {
+				<p class="text-red-500 text-sm mt-1">
+					{{ selectedDaysControl?.errors | formError:'Days of Week' }}
+				</p>
 			}
 		</div>
 	  
 		  <!-- Time Slots -->
-		<div class="w-fit">
-		  <label class="block text-sm font-medium mb-2">Time</label>
-		  <div class="space-y-2" formArrayName="timeSlots">
-			  @for (slot of timeSlots.controls; let i = $index; track i) {
-				  @let timeInvalid = slot.invalid && slot.touched;
-				  <div class="flex gap-2">
-					  <input
-						type="time"
-						[formControlName]="i"
-						class="custom-input"
-						[class.invalid]="timeInvalid"
-						(input)="onTimeChange(i)"
-					  >
-				  </div>
-				  @if (timeInvalid) {
-					<p class="text-red-500 text-sm mt-1">Please select a time</p>
-				  }
-			  }
-		  </div>
-		  @if (timeSlots.length < 5) {	
-			  <button
-				type="button"
-				(click)="addTimeSlot()"
-				class="mt-2 text-sm text-blue-700"
-			  >
-			  + Add another time
-			</button>
-		  }
+		<div class="w-full flex">
+			<div class="basis-full md:basis-2/5 w-full">
+				<label class="block text-sm font-medium mb-2">Time</label>
+				@let timeSlotsControl = medicationForm.get('timeSlots');
+				<div class="space-y-2" formArrayName="timeSlots">
+					@for (slot of timeSlots.controls; let i = $index; track i) {
+						@let timeInvalid = slot.invalid && slot.touched;
+						<div class="flex gap-2">
+							<input
+							  type="time"
+							  [formControlName]="i"
+							  class="custom-input"
+							  [class.invalid]="timeInvalid"
+							>
+						</div>
+						@if (timeInvalid) {
+						  <p class="text-red-500 text-sm mt-1">
+							  {{ slot?.errors | formError:'Time' }}
+						  </p>
+						}
+					}
+					@if (timeSlotsControl?.invalid) {
+					  <p class="text-red-500 text-sm mt-1">
+						  {{ timeSlotsControl?.errors | formError:'Time' }}
+					  </p>
+					}
+				</div>
+				@if (timeSlots.length < 5 && !timeSlotsControl?.invalid) {	
+					<button
+					  type="button"
+					  (click)="addTimeSlot()"
+					  class="mt-2 text-sm text-blue-700"
+					>
+					+ Add another time
+				  </button>
+				}
+			  </div>
 		</div>
 	</div>
 

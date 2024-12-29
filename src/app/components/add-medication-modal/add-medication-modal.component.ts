@@ -67,7 +67,7 @@ export class AddMedicationModalComponent {
       ),
       timeSlots: this.fb.array([
         this.createTimeControl()
-      ])
+      ],[this.validator.notDuplicateItem])
     });
   }
 
@@ -106,13 +106,6 @@ export class AddMedicationModalComponent {
     );
   }
 
-  onTimeChange(index: number): void {
-    const control = this.timeSlots.at(index);
-    const time = control.value;
-    if (!this.isTimeValid(time, index)) {
-      control.setValue('');
-    }
-  }
 
   /**
    * Handles form submission for adding a new medication.

@@ -11,7 +11,9 @@ export class FormErrorPipe implements PipeTransform {
 
     const errorMessages: { [key: string]: string } = {
       required: `${fieldLabel} is required`,
-      minlength: `${fieldLabel} must be at least ${errors?.['minlength']?.requiredLength} characters`
+      minlength: `${fieldLabel} must be at least ${errors?.['minlength']?.requiredLength} characters`,
+      noItemSelected: `At least one item must be selected`,
+	  duplicateItem: `Items of ${fieldLabel} must be unique`
     };
 
     const firstError = Object.keys(errors)[0];
