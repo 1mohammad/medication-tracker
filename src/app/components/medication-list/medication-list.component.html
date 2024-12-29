@@ -1,36 +1,20 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="medication-table">
 	<app-search-medication />
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+    <table class="medication-list">
+        <thead>
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Color
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
+                <th scope="col" class="medication-header">Product name</th>
+                <th scope="col" class="medication-header">Color</th>
+                <th scope="col" class="medication-header">Category</th>
+                <th scope="col" class="medication-header">Price</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
+            <tr class="medication-row">
+                <th scope="row" class="medication-title">Apple MacBook Pro 17"</th>
+                <td class="medication-cell">Silver</td>
+                <td class="medication-cell">Laptop</td>
+                <td class="medication-cell">$2999</td>
             </tr>
         </tbody>
     </table>
