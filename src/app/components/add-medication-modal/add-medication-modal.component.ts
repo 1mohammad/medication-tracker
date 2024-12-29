@@ -99,13 +99,6 @@ export class AddMedicationModalComponent {
     this.selectedDays.markAsTouched();
   }
 
-  isTimeValid(newTime: string, currentIndex: number): boolean {
-    const timeSlots = this.timeSlots;
-    return !timeSlots.controls.some((control, index) => 
-      index !== currentIndex && control.value === newTime && newTime !== ''
-    );
-  }
-
 
   /**
    * Handles form submission for adding a new medication.

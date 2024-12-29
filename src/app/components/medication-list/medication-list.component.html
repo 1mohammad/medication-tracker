@@ -25,23 +25,22 @@
 				</tr>
 			</thead>
 			<tbody>
-				@if (medications()?.length === 0 || filteredMedications()?.length === 0) {
+				@if (filteredMedications()?.length === 0) {
 					<tr>
 						<td colspan="4" class="text-center py-4 text-gray-500">
-							@if (medications()?.length === 0) {
-								No medications found. Click "Add Medication" to get started.
-							} @else {
-								No medications match your search criteria.
-							}
+							{{medications()?.length === 0 ? 
+								'No medications found. Click "Add Medication" to get started.' : 
+								'No medications match your search criteria.'
+							}}
 						</td>
 					</tr>
 				} @else {
 					@for (medication of filteredMedications(); track medication.id) {
 						<tr class="medication-row">
-							<td class="medication-title">{{ medication.name }}</td>
-							<td>{{ medication.dosage }}</td>
-							<td>{{ medication.schedule.days.join(', ')}} at {{ medication.schedule.times.join(', ') }}</td>
-							<td>{{ medication.lastUpdated }}</td>
+							<td class="medication-title">{{medication.name}}</td>
+							<td>{{medication.dosage}}</td>
+							<td>{{medication.schedule.days.join(', ')}} at {{medication.schedule.times.join(', ')}}</td>
+							<td>{{medication.lastUpdated}}</td>
 						</tr>
 					}
 				}

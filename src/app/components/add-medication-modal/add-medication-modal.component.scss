@@ -1,66 +1,36 @@
 .day-selector {
-	cursor: pointer;
-  
-	&__input {
-	  display: none;
-	}
+	@apply cursor-pointer;
   
 	&__label {
-	  display: inline-block;
-	  padding: 0.5rem 1rem;
-	  font-size: 0.875rem;
-	  border: 1px solid #e5e7eb;
-	  border-radius: 0.375rem;
-	  transition: all 0.2s;
-	  background-color: var(--color-white);
-	  color: var(--color-gray-700);
-  
+	  @apply inline-block px-4 py-2 text-sm border border-gray-200 rounded-md transition-all duration-200 bg-white text-gray-700;
+	  
 	  &:hover {
-		background-color: var(--color-gray-50);
+		@apply bg-gray-50;
 	  }
 	}
-  
-	// Selected state
+	
 	input:checked + &__label {
-	  background-color: var(--color-primary);
-	  color: var(--color-white);
+	  @apply bg-blue-500 text-white;
 	}
   }
 
 .custom-input {
-	display: block;
-	width: 100%;
-	padding: 0.5rem;
-	color: var(--color-gray-900);
-	border-radius: 0.5rem;
-	background-color: var(--color-gray-50);
-	font-size: 0.75rem;
-	outline: none;
-	border: 1px solid;
-	&:not(.invalid) {	
-		border-color: var(--color-gray-200);
-		&:focus {
-			border-color: var(--color-primary);
-		}
+	@apply block w-full p-2 text-gray-900 rounded-lg bg-gray-50 text-xs outline-none border;
+	
+	&:not(.invalid) {
+		@apply border-gray-200 focus:border-blue-500;
 	}
+	
 	&.invalid {
-		border-color: var(--color-red-500);
+		@apply border-red-500;
 	}
 }
 
 .frequency-container {
-	width: 100%;
-	border: 1px solid var(--color-gray-200);
-	border-radius: 0.5rem;
-	padding: 1rem;
-	position: relative;
+	@apply w-full border border-gray-200 rounded-lg p-4 relative;
+	
 	&::after {
 		content: "Frequency";
-		position: absolute;
-		top: -10px;
-		left: 12px;
-		background-color: var(--color-white);
-		padding: 0 5px;
-		font-size: 0.75rem;
+		@apply absolute -top-2.5 left-3 bg-white px-1.5 text-xs;
 	}
 }
