@@ -47,17 +47,25 @@ export class AddMedicationModalComponent {
     return this.medicationForm.get('timeSlots') as FormArray;
   }
 
+  private isFirstOpen = true;
+
   constructor() {
     this.initForm();
     
     effect(() => {
       if(this.isOpen()) {
-        this.resetForm();
+        if (this.isFirstOpen) {
+          this.isFirstOpen = false;  // Skip first time since constructor handled it
+          return;
+        }
+        this.initForm();
       }
     });
   }
 
   private initForm(): void {
+	console.log('initForm');
+	
     this.medicationForm = this.fb.group({
       medicationName: ['', [Validators.required, Validators.minLength(3)]],
       dosage: ['', [Validators.required, Validators.min(0.1)]],
@@ -70,10 +78,6 @@ export class AddMedicationModalComponent {
         this.createTimeControl()
       ],[this.validator.notDuplicateItem])
     });
-  }
-
-  private resetForm(): void {
-    this.medicationForm.reset();
   }
 
   private createTimeControl() {
