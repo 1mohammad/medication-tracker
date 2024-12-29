@@ -1,7 +1,7 @@
 <div class="table-container">
 	<div class="relative flex items-center gap-2">
 		<app-search-medication (searchChange)="searchTerm.set($event)" />
-		<div class="top-0 right-0 md:absolute">
+		<div class="top-0 right-0 md:basis-3/5 flex justify-end lg:absolute">
 			<app-button (click)="toggleModal(true)"> 
 				<div class="flex items-center gap-2">
 					<svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
