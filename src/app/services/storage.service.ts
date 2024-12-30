@@ -63,13 +63,4 @@ export class StorageService {
       throw new Error('Failed to clear localStorage');
     }
   }
-
-  /**
-   * Check if a key exists in localStorage
-   * @param key Storage key
-   * @returns boolean indicating if key exists
-   */
-  exists(key: string): boolean {
-    return localStorage.getItem(key) !== null;
-  }
 }

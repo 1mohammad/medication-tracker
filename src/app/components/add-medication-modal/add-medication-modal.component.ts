@@ -1,6 +1,6 @@
-import { Component, computed, effect, inject, input, OnInit, output, signal } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MedicationService } from '@services/medication.service';
 import { Medication } from '@models/medication.model';
 import { ButtonComponent } from '@components/button/button.component';
@@ -98,14 +98,6 @@ export class AddMedicationModalComponent {
       timeSlots.push(this.createTimeControl());
     }
   }
-
-  toggleDay(index: number): void {
-    const currentValue = this.selectedDays.at(index).value;
-    this.selectedDays.at(index).setValue(!currentValue);
-    
-    this.selectedDays.markAsTouched();
-  }
-
 
   /**
    * Handles form submission for adding a new medication.
