@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageService } from './storage.service';
-import { Medication } from '../models/medication.model';
+import { Medication } from '@models/medication.model';
 
 const MEDICATIONS_STORAGE_KEY = 'medications';
 
