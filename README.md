@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
+## 📋 Demo
+
+Check out the live demo: [Medicator App](https://medication-tracker-tau.vercel.app/)
+
 ## 📋 Overview
 
 Medicator is a modern web application designed to help users manage and track their medications efficiently. Built with Angular, this application provides a user-friendly interface for adding, storing, and monitoring medication schedules.
