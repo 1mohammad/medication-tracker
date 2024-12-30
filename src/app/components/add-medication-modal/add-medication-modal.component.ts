@@ -64,8 +64,6 @@ export class AddMedicationModalComponent {
   }
 
   private initForm(): void {
-	console.log('initForm');
-	
     this.medicationForm = this.fb.group({
       medicationName: ['', [Validators.required, Validators.minLength(3)]],
       dosage: ['', [Validators.required, Validators.min(0.1)]],
