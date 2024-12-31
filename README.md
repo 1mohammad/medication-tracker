@@ -56,7 +56,7 @@ src/
 
 2. **Install dependencies**
    ```bash
-   cd medicator
+   cd medication-tracker
    npm install
    ```
 
