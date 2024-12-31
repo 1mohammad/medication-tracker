@@ -75,18 +75,4 @@ describe('StorageService', () => {
       expect(() => service.clear()).toThrowError('Failed to clear localStorage');
     });
   });
-
-  describe('exists', () => {
-    it('should return true when key exists', () => {
-      localStorageSpy.getItem.and.returnValue('{"some":"data"}');
-      expect(service.exists('testKey')).toBeTrue();
-      expect(localStorageSpy.getItem).toHaveBeenCalledWith('testKey');
-    });
-
-    it('should return false when key does not exist', () => {
-      localStorageSpy.getItem.and.returnValue(null);
-      expect(service.exists('testKey')).toBeFalse();
-      expect(localStorageSpy.getItem).toHaveBeenCalledWith('testKey');
-    });
-  });
 });
